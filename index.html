@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mukhlisin Niamillah — Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8fafc; color: #1e293b; scroll-behavior: smooth; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1100px; margin: auto; padding: 2rem; }
+
+        /* Navbar */
+        nav { background: #0f172a; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav ul { display: flex; justify-content: center; list-style: none; flex-wrap: wrap; }
+        nav ul li a { display: block; padding: 1rem 1.5rem; color: #cbd5e1; transition: 0.3s; }
+        nav ul li a:hover { color: white; background: #1e293b; }
+
+        /* Hero */
+        .hero { background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 8rem 2rem 4rem; text-align: center; }
+        .hero img { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 4px solid #38bdf8; margin-bottom: 1rem; }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+        .hero .title { font-size: 1.2rem; color: #94a3b8; margin-bottom: 0.5rem; }
+        .hero .tagline { font-style: italic; color: #cbd5e1; max-width: 600px; margin: 0 auto; }
+        .open-to-work { background: #16a34a; color: white; display: inline-block; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.9rem; margin-top: 1rem; }
+
+        /* Section Headings */
+        section { padding: 4rem 2rem; }
+        section h2 { font-size: 2.2rem; margin-bottom: 2rem; color: #0f172a; text-align: center; position: relative; }
+        section h2::after { content: ''; display: block; width: 60px; height: 4px; background: #38bdf8; margin: 0.5rem auto 0; }
+
+        /* About */
+        .about-text { max-width: 800px; margin: auto; line-height: 1.8; font-size: 1.1rem; white-space: pre-line; }
+
+        /* Stats */
+        .stats-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+        .stat-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; min-width: 180px; }
+        .stat-card .value { font-size: 2.5rem; font-weight: 700; color: #0f172a; }
+        .stat-card .label { color: #64748b; margin-top: 0.3rem; }
+
+        /* Skills */
+        .skill-category { margin-bottom: 2rem; }
+        .skill-category h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: #1e293b; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-tag { background: #e0f2fe; color: #0c4a6e; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; }
+
+        /* Languages */
+        .lang-list { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+        .lang-item { background: white; padding: 1rem 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .lang-item .level { color: #64748b; font-size: 0.9rem; }
+
+        /* Experience */
+        .exp-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        .exp-card .role { font-size: 1.3rem; font-weight: 600; color: #0f172a; }
+        .exp-card .company { color: #38bdf8; margin-bottom: 0.5rem; }
+        .exp-card .period { color: #64748b; font-size: 0.9rem; margin-bottom: 1rem; }
+        .exp-card .desc { margin-bottom: 1rem; }
+        .exp-card ul { padding-left: 1.5rem; }
+        .exp-card ul li { margin-bottom: 0.3rem; }
+
+        /* Projects */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .project-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .project-card:hover { transform: translateY(-5px); }
+        .project-card .content { padding: 1.5rem; }
+        .project-card h3 { margin-bottom: 0.5rem; }
+        .project-card .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0; }
+        .project-card .tag { background: #e0f2fe; color: #0c4a6e; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.8rem; }
+        .project-card .links a { margin-right: 1rem; color: #0f172a; font-weight: 500; }
+        .featured-badge { background: #f59e0b; color: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 0.5rem; }
+
+        /* Contact */
+        .contact-info { text-align: center; font-size: 1.1rem; }
+        .contact-info p { margin-bottom: 0.5rem; }
+        .social-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; font-size: 2rem; }
+        .social-links a { color: #0f172a; transition: 0.3s; }
+        .social-links a:hover { color: #38bdf8; }
+
+        footer { text-align: center; padding: 1rem; background: #0f172a; color: #94a3b8; }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#stats">Statistik</a></li>
+            <li><a href="#skills">Keahlian</a></li>
+            <li><a href="#experience">Pengalaman</a></li>
+            <li><a href="#projects">Proyek</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <img src="file:///J:/titipan%20orang/NIAM/nm17.jpg" alt="Mukhlisin Niamillah">
+        <h1>Mukhlisin Niamillah</h1>
+        <div class="title">Trader & Investor saham, Stockmarket Analyst.</div>
+        <div class="tagline">"Cuman seseorang yang sedang menghadapi berbagai rasa takutnya."</div>
+        <div class="open-to-work"><i class="fas fa-briefcase"></i> Open to Opportunities</div>
+    </header>
+
+    <!-- About -->
+    <section id="about">
+        <h2>Tentang Saya</h2>
+        <div class="about-text">
+Nama saya Mukhlisin Niamillah, Biasa menggunakan nama Niam Munehisa di media sosial.
+Saya adalah seorang trader dan investor  yang aktif di pasar modal. saya adalah Seseorang dengan kepribadian INFJ.
+Saya memiliki keinginan kuat untuk mendalami psikologi, teknologi, dan finansial market.
+Dan saya berusaha untuk menjalani hidup dengan prinsip keberanian.
+Karena jatuh saat masih miskin, tidak lebih sakit daripada jatuh saat sudah kaya.
+<em>"Apa gerangan yang patut dirisaukan dari kehilangan, bila genggaman kita sejak awal memang kosong?"</em></p>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats">
+        <h2>Statistik</h2>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="value">1+</div><div class="label">Experience In The Stock Market (Year)</div></div>
+            <div class="stat-card"><div class="value">500+</div><div class="label">Hours of Analysis</div></div>
+            <div class="stat-card"><div class="value">3+</div><div class="label">Project Built</div></div>
+            <div class="stat-card"><div class="value">999+</div><div class="label">Cups of Coffee</div></div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2>Keahlian</h2>
+        <div class="skill-category">
+            <h3>Trading & Analisis Pasar</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Bandarmology</span><span class="skill-tag">Analisis Teknikal</span><span class="skill-tag">Broker Summary</span><span class="skill-tag">Orderbook Analysis</span><span class="skill-tag">Risk Management</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3>Pengembangan Aplikasi & Web</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Python</span><span class="skill-tag">Streamlit</span><span class="skill-tag">HTML/CSS</span><span class="skill-tag">Chatbot Development</span><span class="skill-tag">Web Deployment</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3>Analisis Data & Riset</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Data Analysis</span><span class="skill-tag">Market Research</span><span class="skill-tag">Pattern Recognition</span><span class="skill-tag">Financial Data Interpretation</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3>Soft Skills</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Analisis Mendalam</span><span class="skill-tag">Komunikasi Efektif</span><span class="skill-tag">Manajemen Waktu</span><span class="skill-tag">Problem Solving</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages -->
+    <section id="languages">
+        <h2>Bahasa</h2>
+        <div class="lang-list">
+            <div class="lang-item"><strong>Indonesia</strong><div class="level">Native</div></div>
+            <div class="lang-item"><strong>English</strong><div class="level">Conversational</div></div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <h2>Pengalaman</h2>
+        <div class="exp-card">
+            <div class="role">Trader, investor & Analis Pasar</div>
+            <div class="company">Pasar Modal (Self-Taught Trader)</div>
+            <div class="period">2025 – Present</div>
+            <div class="desc">Mengelola portofolio saham secara mandiri dengan pendekatan bandarmology dan analisis teknikal. Fokus pada saham volatile dan deteksi akumulasi bandar.</div>
+            <ul>
+                <li>Mengembangkan screener saham berbasis bandarmology</li>
+                <li>Menganalisis money flow, broker summary & orderbook untuk deteksi akumulasi/distribusi</li>
+                <li>Mengembangkan Komunitas SFB</li>
+            </ul>
+        </div>
+        <div class="exp-card">
+            <div class="role">Web Developer & Chatbot Creator</div>
+            <div class="company">Freelance (Self-Employed)</div>
+            <div class="period">2025 – Present</div>
+            <div class="desc">Membangun website profil, chatbot otomatis, dan aplikasi web sederhana untuk klien individu dan UMKM.</div>
+            <ul>
+                <li>Membangun chatbot analisis saham berbasis Streamlit + yFinance</li>
+                <li>Membuat website portofolio pribadi dengan GitVitae</li>
+                <li>Mengembangkan Penjualan Jasa Digital</li>
+            </ul>
+        </div>
+        <div class="exp-card">
+            <div class="role">Anggota Aktif</div>
+            <div class="company">Mapala (Pecinta Alam) - Kampus</div>
+            <div class="period">2025 – 2026</div>
+            <div class="desc">Bergabung dalam organisasi pecinta alam, terlibat dalam ekspedisi dan pengelolaan kegiatan di alam terbuka.</div>
+            <ul>
+                <li>Mengikuti ekspedisi gunung sumbing & survival di hutan</li>
+                <li>Belajar kerja tim, manajemen risiko, dan kedisiplinan</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <h2>Proyek Unggulan</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="content">
+                    <span class="featured-badge">★ Featured</span>
+                    <h3>Chatbot Analisis Saham + Bandarmology</h3>
+                    <p>Aplikasi berbasis Streamlit untuk menganalisis saham dengan pendekatan bandarmology dan teknikal. Mengambil data real-time dari yFinance, menampilkan grafik candlestick, MA, volume, dan RSI.</p>
+                    <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">yFinance</span><span class="tag">Plotly</span><span class="tag">Bandarmology</span></div>
+                    <div class="links">
+                        <a href="https://space-munehisa17-znmofawnrdc9qlgvsrngfb.streamlit.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="https://github.com/mukhlisinniamillah-ai/chatbot-bandar" target="_blank"><i class="fab fa-github"></i> Repo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="content">
+                    <span class="featured-badge">★ Featured</span>
+                    <h3>Website Profil Pribadi - Niam Munehisa</h3>
+                    <p>Portofolio personal berbasis GitVitae. Menampilkan identitas, skill, pengalaman trading, dan project-project yang pernah dibuat.</p>
+                    <div class="tags"><span class="tag">Website</span><span class="tag">HTML</span><span class="tag">Portfolio</span></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="content">
+                    <span class="featured-badge">★ Featured</span>
+                    <h3>Niamian Triad — Kerangka Analisis Perilaku Manusia</h3>
+                    <p>Sebuah kerangka pemikiran personal yang dikembangkan dari pengalaman di bidang psikologi, trading, dan introspeksi diri. Terdiri dari 3 kunci untuk memahami dan mempengaruhi orang lain (bawah sadar, ketakutan, kausal) dan 3 perilaku untuk melindungi diri (self-awareness, detachment, calm).</p>
+                    <div class="tags"><span class="tag">Psikologi</span><span class="tag">Niamian Triad</span><span class="tag">Self-Development</span><span class="tag">Analisis Perilaku</span><span class="tag">Filosofi</span></div>
+                    <div class="links">
+                        <!-- Tidak ada liveUrl/repoUrl -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Hubungi Saya</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> Mukhlisinniamillah@gmail.com</p>
+            <p><i class="fas fa-phone"></i> 089678158376</p>
+            <p><i class="fas fa-map-marker-alt"></i> Tenajar lor, Kertasemaya, Indramayu</p>
+        </div>
+        <div class="social-links">
+            <a href="https://github.com/mukhlisinniamillah-ai" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/niam.munehisa17/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Mukhlisin Niamillah. Dibuat dengan ❤️</p>
+    </footer>
+</body>
+</html>
